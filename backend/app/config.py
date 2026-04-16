@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -20,6 +21,18 @@ class Settings(BaseSettings):
     frontend_dist_path: str = "../frontend/dist"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def railway_postgres_uses_psycopg3(cls, v: object) -> object:
+        """Railway (and others) set DATABASE_URL as postgresql://..., which defaults to psycopg2."""
+        if not isinstance(v, str):
+            return v
+        if v.startswith("postgres://"):
+            return "postgresql+psycopg://" + v.removeprefix("postgres://")
+        if v.startswith("postgresql://"):
+            return "postgresql+psycopg://" + v.removeprefix("postgresql://")
+        return v
 
 
 @lru_cache
