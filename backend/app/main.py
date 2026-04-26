@@ -12,6 +12,7 @@ from app.api.routes import router as api_router
 from app.config import get_settings
 from app.db.session import SessionLocal
 from app.services.ingestion import run_ingestion
+from app.services.playtomic_daily_ingestion import run_playtomic_daily_availability_ingestion
 
 settings = get_settings()
 scheduler = BackgroundScheduler()
@@ -21,6 +22,14 @@ def _run_scheduled_ingest() -> None:
     db = SessionLocal()
     try:
         run_ingestion(db=db, settings=settings)
+    finally:
+        db.close()
+
+
+def _run_scheduled_playtomic_daily_ingest() -> None:
+    db = SessionLocal()
+    try:
+        run_playtomic_daily_availability_ingestion(db=db, settings=settings)
     finally:
         db.close()
 
@@ -35,6 +44,17 @@ async def lifespan(_: FastAPI):
             id="periodic-ingest",
             replace_existing=True,
         )
+    if settings.playtomic_daily_cron_enabled:
+        scheduler.add_job(
+            _run_scheduled_playtomic_daily_ingest,
+            trigger="cron",
+            hour=settings.playtomic_daily_cron_hour,
+            minute=settings.playtomic_daily_cron_minute,
+            timezone=settings.playtomic_availability_timezone,
+            id="playtomic-daily-ingest",
+            replace_existing=True,
+        )
+    if not scheduler.running and scheduler.get_jobs():
         scheduler.start()
     try:
         yield

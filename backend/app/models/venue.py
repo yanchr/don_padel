@@ -25,3 +25,6 @@ class Venue(Base):
     )
 
     availability_snapshots = relationship("AvailabilitySnapshot", back_populates="venue")
+    playtomic_court_day_snapshots = relationship(
+        "PlaytomicCourtDaySnapshot", back_populates="venue"
+    )

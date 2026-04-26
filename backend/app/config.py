@@ -16,6 +16,13 @@ class Settings(BaseSettings):
     ingest_user_agent: str = "don-padel-bot/0.1"
     ingest_timeout_seconds: float = 20.0
     ingest_delay_ms: int = 200
+    playtomic_availability_days: int = 1
+    playtomic_availability_timezone: str = "Europe/Zurich"
+    playtomic_api_base_url: str = "https://api.playtomic.io"
+    playtomic_daily_sport_id: str = "PADEL"
+    playtomic_daily_cron_enabled: bool = False
+    playtomic_daily_cron_hour: int = 6
+    playtomic_daily_cron_minute: int = 0
     playtomic_base_url: str = "https://playtomic.com"
     swiss_seed_slugs: str = "pdl-zurich"
     frontend_dist_path: str = "../frontend/dist"
@@ -33,6 +40,11 @@ class Settings(BaseSettings):
         if v.startswith("postgresql://"):
             return "postgresql+psycopg://" + v.removeprefix("postgresql://")
         return v
+
+    @field_validator("playtomic_availability_days")
+    @classmethod
+    def validate_playtomic_availability_days(cls, v: int) -> int:
+        return max(v, 1)
 
 
 @lru_cache

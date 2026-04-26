@@ -16,6 +16,57 @@
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem 1.2rem;
+  flex-wrap: wrap;
+}
+
+.topbar__link {
+  text-decoration: none;
+  color: #1a5fb4;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0;
+}
+
+.topbar__link:hover {
+  text-decoration: underline;
+}
+
+.mapPopupHint {
+  margin: 0.4rem 0 0;
+  font-size: 0.7rem;
+  color: #516079;
+  max-width: 200px;
+}
+
+.playtomicGridBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(20, 32, 52, 0.45);
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.playtomicGridDialog {
+  width: min(100%, 1200px);
+  max-height: min(90vh, 100%);
+  overflow: auto;
+  background: #f4f7fb;
+  border-radius: 12px;
+  border: 1px solid #dfe3ea;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+  padding: 0.6rem 0.75rem 0.5rem;
 }
 
 .topbar h1 {
@@ -79,6 +130,11 @@
 .panelHeader h2 {
   font-size: 1.05rem;
   margin: 0;
+}
+
+.mapLegend {
+  font-size: 0.75rem;
+  color: #5f6f87;
 }
 
 .chip {

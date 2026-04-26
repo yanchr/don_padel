@@ -2,6 +2,9 @@
 
 `don_padel` is a Playtomic-focused MVP to monitor padel venue availability in Switzerland and explore booking load over time.
 
+## url
+https://donpadel-production.up.railway.app/ 
+
 ## Project goals
 
 - Ingest schedule-related availability snapshots on a time interval (hourly by default).

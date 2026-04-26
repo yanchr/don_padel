@@ -11,6 +11,19 @@ export default defineConfig({
         target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
+      // Playtomic public web API (CORS off in dev)
+      "/_pweb": {
+        target: "https://playtomic.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/_pweb/, ""),
+      },
+      "/_papi": {
+        target: "https://api.playtomic.io",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/_papi/, ""),
+      },
     },
   },
 })

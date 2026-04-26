@@ -1,0 +1,305 @@
+.timesPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  color: #1a2a43;
+  background: #f4f7fb;
+}
+
+.timesPage--embed {
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  gap: 0.5rem;
+}
+
+.timesPage--embed .timesPage__bar {
+  padding: 0.65rem 0.75rem;
+}
+
+.timesPage--embed h1 {
+  font-size: 1.1rem;
+}
+
+.timesPage__tenantMeta {
+  font-size: 0.78rem;
+  color: #6a7894;
+}
+
+.timesPage__tenantMeta code {
+  font-size: 0.7rem;
+  background: #eef1f6;
+  padding: 0.05rem 0.2rem;
+  border-radius: 3px;
+}
+
+.timesPage__close {
+  font: inherit;
+  font-size: 0.9rem;
+  color: #1a2a43;
+  background: #eef1f6;
+  border: 1px solid #ccd3dd;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.timesPage__close:hover {
+  background: #e4e9f0;
+}
+
+.timesPage__extLink--muted {
+  color: #8b9ab0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.timesPage__bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  background: #fff;
+  border: 1px solid #dfe3ea;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.timesPage h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 650;
+}
+
+.timesPage__subtitle {
+  margin: 0.2rem 0 0;
+  color: #516079;
+  font-size: 0.9rem;
+}
+
+.timesPage__sources {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: #5a6a85;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.45rem;
+}
+
+.timesPage__extLink {
+  color: #1a5fb4;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.timesPage__extLink:hover {
+  text-decoration: underline;
+}
+
+.timesPage__sourceSep {
+  color: #8b9ab0;
+  user-select: none;
+}
+
+.timesPage__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timesPage__dateLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  color: #344257;
+}
+
+.timesPage__dateLabel input {
+  border: 1px solid #ccd3dd;
+  border-radius: 8px;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.timesPage__back {
+  text-decoration: none;
+  color: #1a5fb4;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.timesPage__back:hover {
+  text-decoration: underline;
+}
+
+.timesPage__error {
+  background: #ffe8e8;
+  border: 1px solid #ffc4c4;
+  color: #9b2424;
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+}
+
+.timesPage__loading {
+  color: #516079;
+  margin: 0;
+}
+
+.timesTableWrap {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid #dfe3ea;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.timesTable {
+  --name-col: 200px;
+  --slot-count: 48;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--name-col) repeat(var(--slot-count), minmax(4px, 1fr));
+  min-width: 720px;
+}
+
+.timesTable__corner {
+  grid-column: 1;
+  grid-row: 1;
+  border-bottom: 1px solid #e1e6ef;
+  border-right: 1px solid #e1e6ef;
+  min-height: 36px;
+  background: #fafbfe;
+}
+
+.timesTable__headCell {
+  grid-row: 1;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #5a6a85;
+  text-align: center;
+  padding: 0.3rem 0.1rem;
+  border-bottom: 1px solid #e1e6ef;
+  background: #fafbfe;
+  white-space: nowrap;
+}
+
+.timesTable__row {
+  display: contents;
+}
+
+.timesTable__name {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.2rem 0.45rem 0.2rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-top: 1px solid #f0f2f6;
+  border-right: 1px solid #e1e6ef;
+  min-height: 48px;
+  background: #fcfdff;
+}
+
+.timesTable__courtTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.timesTable__resourceId {
+  font-size: 0.62rem;
+  font-weight: 400;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #6a7894;
+  line-height: 1.2;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.timesTable__cell {
+  min-height: 48px;
+  border-top: 1px solid #f0f2f6;
+  border-left: 1px solid #eef0f4;
+  box-sizing: border-box;
+}
+
+.timesTable__cell--past {
+  background: repeating-linear-gradient(
+    -45deg,
+    #e8e9ec,
+    #e8e9ec 4px,
+    #f4f5f7 4px,
+    #f4f5f7 8px
+  );
+}
+
+.timesTable__cell--open {
+  background: #ffffff;
+  border-color: #e6e9ef;
+}
+
+.timesTable__cell--closed {
+  background: #d8dce3;
+  border-color: #cfd3da;
+}
+
+.timesTable__nowLine {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: auto;
+  margin-left: -1px;
+  background: #2b7df7;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(43, 125, 247, 0.25);
+}
+
+.timesPage__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #516079;
+  align-items: center;
+}
+
+.timesPage__legend .lg {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 0.3rem;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.lg-open {
+  background: #fff;
+  border: 1px solid #c9ced8;
+}
+
+.lg-closed {
+  background: #d8dce3;
+  border: 1px solid #b8bcc4;
+}
+
+.lg-past {
+  background: repeating-linear-gradient(
+    -45deg,
+    #e8e9ec,
+    #e8e9ec 3px,
+    #f4f5f7 3px,
+    #f4f5f7 6px
+  );
+  border: 1px solid #bfc4cd;
+}

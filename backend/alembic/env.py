@@ -7,7 +7,7 @@ from sqlalchemy import engine_from_config, pool
 
 from app.config import get_settings
 from app.db.base import Base
-from app.models import availability_snapshot, ingestion_run, venue  # noqa: F401
+from app.models import availability_snapshot, ingestion_run, playtomic_court_day_snapshot, venue  # noqa: F401
 
 config = context.config
 if config.config_file_name is not None:

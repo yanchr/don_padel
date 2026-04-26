@@ -9,6 +9,7 @@ from app.db.session import get_db
 from app.models import AvailabilitySnapshot, IngestionRun, Venue
 from app.schemas.venue import AvailabilitySlotOut, VenueAvailabilityOut, VenueOut, VenueSummary
 from app.services.ingestion import run_ingestion
+from app.services.playtomic_daily_ingestion import run_playtomic_daily_availability_ingestion
 
 router = APIRouter(prefix="/api")
 
@@ -152,6 +153,23 @@ def trigger_ingest(
     if x_ingest_secret != settings.ingest_secret:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid ingest secret.")
     run = run_ingestion(db=db, settings=settings)
+    return {
+        "id": run.id,
+        "status": run.status,
+        "venues_seen": run.venues_seen,
+        "snapshots_written": run.snapshots_written,
+    }
+
+
+@router.post("/internal/ingest-playtomic-availability")
+def trigger_playtomic_daily_ingest(
+    x_ingest_secret: str | None = Header(default=None),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_settings),
+) -> dict:
+    if x_ingest_secret != settings.ingest_secret:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid ingest secret.")
+    run = run_playtomic_daily_availability_ingestion(db=db, settings=settings)
     return {
         "id": run.id,
         "status": run.status,
